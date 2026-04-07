@@ -1,0 +1,126 @@
+{
+  "id": "granos-comercial",
+  "version": "1.0.0",
+  "apiVersion": "2.0",
+  "assets": {
+    "styles": [
+      "./dist/assets/tailwind.css",
+      "./dist/assets/fontawesome/css/all.min.css"
+    ]
+  },
+  "contributes": {
+    "menus": [
+      {
+        "path": "Pedidos",
+        "order": 70,
+        "viewId": "granos-comercial.pedidos.open",
+        "icon": "assets/icons/lista.svg",
+        "color": "#16a34a"
+      },
+      {
+        "path": "Facturacion",
+        "order": 80,
+        "viewId": "granos-comercial.facturacion.open",
+        "icon": "assets/icons/factura.svg",
+        "color": "#2563eb"
+      },
+      {
+        "path": "Clientes",
+        "order": 90,
+        "viewId": "granos-comercial.clientes.open",
+        "icon": "assets/icons/persona.svg",
+        "color": "#7c3aed"
+      }
+    ],
+    "views": [
+      {
+        "id": "granos-comercial.pedidos.open",
+        "title": "Pedidos",
+        "component": "./dist/views/orders/index.js",
+        "export": "OrdersView"
+      },
+      {
+        "id": "granos-comercial.facturacion.open",
+        "title": "Facturacion",
+        "component": "./dist/views/invoices/index.js",
+        "export": "InvoicesView"
+      },
+      {
+        "id": "granos-comercial.clientes.open",
+        "title": "Clientes",
+        "component": "./dist/views/clients/index.js",
+        "export": "ClientsView"
+      }
+    ],
+    "repositories": [
+      {
+        "module": "./dist/repositories/order.repository.js",
+        "export": "OrderRepository",
+        "prefix": "granos-comercial.orders"
+      },
+      {
+        "module": "./dist/repositories/invoice.repository.js",
+        "export": "InvoiceRepository",
+        "prefix": "granos-comercial.invoices"
+      }
+    ],
+    "settings": {
+      "groups": [
+        {
+          "id": "granos-comercial",
+          "label": "Comercial",
+          "order": 50
+        }
+      ],
+      "pages": [
+        {
+          "id": "granos-comercial.configuracion-comercial",
+          "group": "granos-comercial",
+          "label": "Configuración Comercial",
+          "icon": "assets/icons/configuracion-comercial.svg",
+          "order": 10
+        }
+      ],
+      "sections": [
+        {
+          "id": "granos-comercial.configuracion-comercial.iva",
+          "page": "granos-comercial.configuracion-comercial",
+          "label": "Alícuotas de IVA por tipo de factura",
+          "order": 10,
+          "items": [
+            {
+              "key": "granos-comercial.iva.fc",
+              "type": "number",
+              "label": "IVA — FC (%)",
+              "description": "Porcentaje de IVA para Factura C.",
+              "default": 21,
+              "min": 0,
+              "max": 100,
+              "tags": ["iva", "fc", "alícuota"]
+            },
+            {
+              "key": "granos-comercial.iva.lsg",
+              "type": "number",
+              "label": "IVA — LSG (%)",
+              "description": "Porcentaje de IVA para Liquidación Secundaria de Granos.",
+              "default": 0,
+              "min": 0,
+              "max": 100,
+              "tags": ["iva", "lsg", "alícuota"]
+            },
+            {
+              "key": "granos-comercial.iva.lsg_industria",
+              "type": "number",
+              "label": "IVA — LSG Industria (%)",
+              "description": "Porcentaje de IVA para LSG Industria.",
+              "default": 0,
+              "min": 0,
+              "max": 100,
+              "tags": ["iva", "lsg_industria", "alícuota"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
